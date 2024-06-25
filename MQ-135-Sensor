@@ -1,0 +1,24 @@
+const int sensorPin = A0; // Pin, an den der MQ-135 AO angeschlossen ist
+int sensorValue = 0;      // Variable zur Speicherung des Sensorwertes
+
+void setup() {
+  Serial.begin(9600); // Initialisiert die serielle Kommunikation bei 9600 bps
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin); // Liest den analogen Wert vom Sensor
+
+  // Konvertiert den Sensorwert in eine Luftqualitätsanzeige
+  float voltage = sensorValue * (5.0 / 1023.0);
+  float airQuality = voltage * 100.0; // Einfacher Umrechnungsfaktor (anpassen)
+
+  // Gibt die Werte auf dem seriellen Monitor aus
+  Serial.print("Sensor Value: ");
+  Serial.print(sensorValue);
+  Serial.print(" - Voltage: ");
+  Serial.print(voltage);
+  Serial.print("V - Air Quality: ");
+  Serial.println(airQuality);
+
+  delay(1000); // Warte eine Sekunde, bevor der nächste Wert gelesen wird
+}
