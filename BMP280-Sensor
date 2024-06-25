@@ -1,0 +1,35 @@
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME280 bme; // Erstelle ein Objekt der Adafruit_BME280-Klasse
+
+void setup() {
+  Serial.begin(9600);
+  if (!bme.begin(0x76)) { // Standard I2C Adresse für BME280/BMP280 ist 0x76 oder 0x77
+    Serial.println("Could not find a valid BME280 sensor, check wiring!");
+    while (1);
+  }
+}
+
+void loop() {
+  float temperature = bme.readTemperature();
+  float pressure = bme.readPressure() / 100.0F;
+  float humidity = bme.readHumidity();
+
+  Serial.print("Temperature = ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+
+  Serial.print("Pressure = ");
+  Serial.print(pressure);
+  Serial.println(" hPa");
+
+  Serial.print("Humidity = ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  delay(2000); // Warte 2 Sekunden bevor der nächste Wert gelesen wird
+}
