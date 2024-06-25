@@ -1,0 +1,45 @@
+#include <Wire.h>
+#include <MPU6050.h>
+
+MPU6050 mpu;
+
+const int stepThreshold = 2000; // Threshold for detecting a step
+int stepCount = 0;
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  mpu.initialize();
+  
+  if (mpu.testConnection()) {
+    Serial.println("MPU6050 connection successful");
+  } else {
+    Serial.println("MPU6050 connection failed");
+    while (1);
+  }
+}
+
+void loop() {
+  static int16_t previousX = 0;
+  static int16_t previousY = 0;
+  static int16_t previousZ = 0;
+
+  int16_t ax, ay, az;
+  mpu.getAcceleration(&ax, &ay, &az);
+
+  int deltaX = abs(ax - previousX);
+  int deltaY = abs(ay - previousY);
+  int deltaZ = abs(az - previousZ);
+
+  if (deltaX > stepThreshold || deltaY > stepThreshold || deltaZ > stepThreshold) {
+    stepCount++;
+    Serial.print("Step detected! Total steps: ");
+    Serial.println(stepCount);
+  }
+
+  previousX = ax;
+  previousY = ay;
+  previousZ = az;
+
+  delay(100);
+}
