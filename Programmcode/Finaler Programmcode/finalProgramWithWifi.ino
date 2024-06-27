@@ -38,7 +38,6 @@ Adafruit_MPU6050 mpu;
 
 // Variablen für Schrittzählung
 int stepCounter = 0;
-int motionCount = 0;
 
 // Bildschirmstatus Variable
 int screenState = 0;
