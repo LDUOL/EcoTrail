@@ -40,9 +40,6 @@ Adafruit_MPU6050 mpu;
 int stepCounter = 0;
 int motionCount = 0;
 
-// Programmstart
-bool programEnabled = true;
-
 // Bildschirmstatus Variable
 int screenState = 0;
 
