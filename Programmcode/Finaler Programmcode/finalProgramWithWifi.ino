@@ -7,8 +7,8 @@
 #include <ESP8266WebServer.h>
 
 // WLAN-Konfigurationsdaten
-const char* ssid = "DeinSSID"; // Ersetze dies durch deinen WLAN-SSID
-const char* password = "DeinPasswort"; // Ersetze dies durch dein WLAN-Passwort
+const char* ssid = "-"; // Ersetze dies durch deinen WLAN-SSID
+const char* password = "-"; // Ersetze dies durch dein WLAN-Passwort
 
 // Webserver initialisieren
 ESP8266WebServer server(80);
@@ -94,7 +94,7 @@ void setup() {
   mpu.setHighPassFilter(MPU6050_HIGHPASS_0_63_HZ);
   mpu.setMotionDetectionThreshold(1);
   mpu.setMotionDetectionDuration(20);
-  mpu.setInterruptPinLatch(true);	// Keep it latched.  Will turn off when reinitialized.
+  mpu.setInterruptPinLatch(true);
   mpu.setInterruptPinPolarity(true);
   mpu.setMotionInterrupt(true);
 
@@ -121,7 +121,7 @@ void loop() {
   // Lese den Buttonzustand
   int reading = digitalRead(BUTTON_PIN);
 
-  // Prüfe auf Button-Druck mit Entprellung
+  // Prüfe auf Button-Druck
   if (reading != lastButtonState) {
     lastDebounceTime = millis();
   }
