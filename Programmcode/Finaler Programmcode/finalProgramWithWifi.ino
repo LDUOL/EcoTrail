@@ -143,7 +143,7 @@ void loop() {
   // Lese BMP280 Sensorwerte
   float temperature = bmp.readTemperature();
   float pressure = bmp.readPressure();
-  float altitude = bmp.readAltitude(1021.00); // Adjust for your local sea level pressure
+  float altitude = bmp.readAltitude(1021.00); // An "local sea level pressure" anpassen
 
   // LED Steuerung basierend auf Temperatur und Druck
   if (temperature > 35.0 || pressure < 950.0 || mp135Value < 512) {
