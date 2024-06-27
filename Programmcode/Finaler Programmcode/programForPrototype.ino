@@ -4,6 +4,9 @@
 #include <Adafruit_MPU6050.h>
 #include <LiquidCrystal_I2C.h>
 
+// Dies ist der Code für den Prototypen, den wir in der Abschlusspräsentation gezeigt haben
+
+
 // Pins for MP135 sensor
 #define MP135_PIN A0
 

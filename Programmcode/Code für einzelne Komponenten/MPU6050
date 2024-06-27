@@ -1,6 +1,8 @@
 #include <Wire.h>
 #include <MPU6050.h>
 
+//Ursprünglich versuchter Code für das Accelerometer/ den Schrittzähler
+//-> führt alledings zu Konflikten, daher in dem finalen Programm abgeändert
 MPU6050 mpu;
 
 const int stepThreshold = 2000; // Threshold for detecting a step
